@@ -15,16 +15,18 @@ class FriendTableViewCell: UITableViewCell {
     @IBOutlet var hobbiesLabel: UILabel!
     
     
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
+    var friend: Friend? {
+        didSet {
+            self.updateViews()
+        }
     }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+    
+    private func updateViews() {
+        guard let friend = friend else {return}
+        
+        nameLabel.text = friend.name
+        hometownLabel.text = friend.hometown
+        hobbiesLabel.text = "\(friend.hobbies.count) hobbies"
     }
 
 }

@@ -8,6 +8,12 @@
 
 import UIKit
 
+//create protocol with the delegate name
+//
+protocol AddFriendDelegate {
+    func friendWasCreated(friend: Friend)
+}
+
 class AddFriendViewController: UIViewController {
 
     @IBOutlet var nameTextField: UITextField!
@@ -16,6 +22,7 @@ class AddFriendViewController: UIViewController {
     @IBOutlet var hobby2TextField: UITextField!
     @IBOutlet var hobby3TextField: UITextField!
     
+    var delegate: AddFriendDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,9 +32,31 @@ class AddFriendViewController: UIViewController {
     
     
     @IBAction func cancelButtonTapped(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
     }
     
     @IBAction func saveButtonTapped(_ sender: Any) {
+        
+        guard let name = nameTextField.text,
+            let hometown = hometownTextField.text,
+            !name.isEmpty,
+            !hometown.isEmpty else {return}
+        
+        var friend = Friend(name: name, hometown: hometown, hobbies: [])
+        
+        if let hobby1 = hobby1TextField.text,
+            !hobby1.isEmpty {
+            friend.hobbies.append(hobby1)
+        }
+        if let hobby2 = hobby2TextField.text,
+            !hobby2.isEmpty {
+            friend.hobbies.append(hobby2)
+        }
+        if let hobby3 = hobby3TextField.text,
+            !hobby3.isEmpty {
+            friend.hobbies.append(hobby3)
+        }
+        delegate?.friendWasCreated(friend: friend)
     }
     
     
