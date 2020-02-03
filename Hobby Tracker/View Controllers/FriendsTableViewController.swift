@@ -14,7 +14,7 @@ class FriendsTableViewController: UIViewController, UITableViewDataSource, UITab
 
     @IBOutlet var tableView: UITableView!
     
-    var friends: [Friend] = [Friend(name: "waseem", hometown: "syria", hobbies: ["smash bros", "watch naruto"])]
+    var friends: [Friend] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()

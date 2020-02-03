@@ -57,6 +57,7 @@ class AddFriendViewController: UIViewController {
             friend.hobbies.append(hobby3)
         }
         delegate?.friendWasCreated(friend: friend)
+        
     }
     
     
